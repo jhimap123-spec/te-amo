@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para mi amor</title>
+  <style>
+    body {
+      background-color: #fffbea;
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+    h1 {
+      color: #e6b800;
+      margin-top: 50px;
+    }
+    #mensaje {
+      display: none;
+      font-size: 2em;
+      color: #ffcc00;
+      font-weight: bold;
+    }
+    .flor {
+      position: absolute;
+      top: -50px;
+      font-size: 30px;
+      animation: caer 5s linear infinite;
+    }
+    @keyframes caer {
+      to { transform: translateY(100vh); }
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Amor, te tengo un regalo en tu día especial 💛</h1>
+  <button onclick="mostrarAmor()">Abrir regalo 🎁</button>
+  <div id="mensaje">💛 Te Amo 💛</div>
+
+  <!-- Música -->
+  <audio id="musica">
+    <source src="https://www.dropbox.com/scl/fi/26sodxvh4mf50zwwtdx97/video-para-pagina-Hecho-con-Clipchamp.mp3?rlkey=2mculuszqvpi9ok2sltjnc155&st=yjneteuy&raw=1" type="audio/mp3">
+  </audio>
+
+  <script>
+    function mostrarAmor() {
+      document.getElementById("mensaje").style.display = "block";
+      const musica = document.getElementById("musica");
+      musica.play().catch(error => {
+        console.log("El navegador bloqueó el autoplay, toca play en el reproductor.");
+      });
+      setInterval(crearFlor, 500);
+    }
+
+    function crearFlor() {
+      const flor = document.createElement("div");
+      // Solo flores amarillas
+      const flores = ["🌻"];
+      flor.innerText = flores[Math.floor(Math.random() * flores.length)];
+      flor.classList.add("flor");
+      flor.style.left = Math.random() * window.innerWidth + "px";
+      flor.style.animationDuration = (3 + Math.random() * 5) + "s";
+      document.body.appendChild(flor);
+
+      setTimeout(() => {
+        flor.remove();
+      }, 8000);
+    }
+  </script>
+</body>
+</html>
+
